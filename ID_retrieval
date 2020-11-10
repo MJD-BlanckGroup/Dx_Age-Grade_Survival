@@ -1,0 +1,60 @@
+%Michael Diaz
+%Breast Carcinoma Survival Analysis (Rx Age, Tumor Grade)
+%11/11/20
+
+Rx_age=dataclinicalsample(6:length(dataclinicalsample),8); 
+Tumor_stage=dataclinicalsample(6:length(dataclinicalsample),13);
+gY=[];gM=[];gO=[];gY_IDs=[""];gM_IDs=[""];gO_IDs=[""];
+
+%by age
+for i=1:numel(Rx_age) 
+    if str2double(Rx_age(i)) < 47
+        gY(end+1)=i;
+    elseif str2double(Rx_age(i)) < 58
+        gM(end+1)=i;
+    else 
+        gO(end+1)=i;
+    end
+end
+
+for k=1:numel(gY)
+    gY_IDs(k)=string(dataclinicalsample(gY(k)+5,1));
+end
+
+for l=1:numel(gM)
+    gM_IDs(l)=string(dataclinicalsample(gM(l)+5,1));
+end
+
+for z=1:numel(gO)
+    gO_IDs(z)=string(dataclinicalsample(gO(z)+5,1));
+end
+
+%by tumor grade
+g1=[];g2=[];g3=[];g4=[];
+for i=1:numel(Tumor_stage)
+    if strcmp(Tumor_stage(i),'IA') || strcmp(Tumor_stage(i),'IB')
+        g1(end+1)=i;
+    elseif strcmp(Tumor_stage(i),'IIA') || strcmp(Tumor_stage(i),'IIB')
+        g2(end+1)=i;
+    elseif strcmp(Tumor_stage(i),'IIIA') || strcmp(Tumor_stage(i),'IIIB') || strcmp(Tumor_stage(i),'IIIC')
+        g3(end+1)=i;
+    elseif strcmp(Tumor_stage(i),'IV')
+        g4(end+1)=i;
+    end
+end
+
+for p=1:numel(g1)
+    g1_IDs(p)=string(dataclinicalsample(g1(p)+5,1));
+end
+
+for o=1:numel(g2)
+    g2_IDs(o)=string(dataclinicalsample(g2(o)+5,1));
+end
+
+for u=1:numel(g3)
+    g3_IDs(u)=string(dataclinicalsample(g3(u)+5,1));
+end
+
+for y=1:numel(g4)
+    g4_IDs(y)=string(dataclinicalsample(g4(y)+5,1));
+end
